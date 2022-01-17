@@ -8,3 +8,8 @@ button{float:right;padding:7px;margin-top:5px;margin-right:16px;background:#444;
 button:hover{background:#00a2ff}@media screen and (max-width:500px){.topnav .search-container{float:none}.topnav a,.topnav input[type=text],.topnav .search-container 
 button{float:none;display:block;text-align:center;width:100%;margin:0;padding:8px}.topnav 
 input[type=text]{border:1px solid #ccc;text-align:center;padding:10px}}
+<style>
+a:link {color: white; background-color: transparent; text-decoration: none;}
+a:visited {color: white; background-color: transparent; text-decoration: none;}
+a:hover {color: gray; background-color: transparent; text-decoration: underline;}
+a:active {color: white; background-color: transparent; text-decoration: underline;}
