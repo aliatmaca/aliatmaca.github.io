@@ -11,7 +11,9 @@
     font-weight: bold;
     font-size: 14px;
     color: white;
-    background: radial-gradient(circle, rgba(0,162,255,1) 22%, rgba(0,136,255,1) 44%, rgba(0,102,255,1) 77%);     margin: 0;
+    background: rgb(0,162,255);
+    background: linear-gradient(90deg, rgba(0,162,255,1) 0%, rgba(0,255,238,1) 100%);
+    margin: 0;
     padding: 0;
   }
   #bar {
@@ -100,12 +102,15 @@
 <body>
 
 <div id="bar">
-  <div id="clock" title="6.0.2419h - 9/5/24"></div>
+  <div id="clock" title="6.0.2449a - 7/12/24"></div>
   <div id="search">
     <input type="text" id="search-input" placeholder="Ara">
     <select id="search-engine">
       <option value="https://google.com.tr/search?q=">G</option>
-      <option value="https://duckduckgo.com/?q=">DDG</option>
+      <option value="https://duckduckgo.com/?q=">Duck</option>
+      <option value="https://lite.duckduckgo.com/lite/?q=">Duck Lite</option>
+      <option value="https://www.bing.com/search?q=">Bing</option>
+      <option value="https://archive.org/search?query=">Arşiv</option>
     </select>
     <button class="fav" onclick="search()">></button>
   </div>
@@ -116,7 +121,7 @@
   <button class="fav" onclick="window.location.href='https://google.com.tr';">Google</button>
   <button class="fav" onclick="window.location.href='https://mail.google.com';">Gmail</button>
   <button class="fav" onclick="window.location.href='https://drive.google.com';">G Drive</button>
-  <button class="fav" onclick="window.location.href='https://photos.google.com';">Fotolar</button>
+  <button class="fav" onclick="window.location.href='https://photos.google.com';">G Foto</button>
   <button class="fav" onclick="window.location.href='https://gemini.google.com';">Gemini</button>
   <!-- Msft -->
   <button class="fav" onclick="window.location.href='https://bing.com';">Bing</button>
@@ -125,10 +130,10 @@
   <button class="fav" onclick="window.location.href='https://onenote.com';">OneNote</button>
   <button class="fav" onclick="window.location.href='https://copilot.microsoft.com';">Copilot</button>
   <!-- SosMed -->
-  <button class="fav" onclick="window.location.href='https://vid.puffyan.us;">YouTube</button>
-  <button class="fav" onclick="window.location.href='https://instagram.com';">Instagram</button>
+  <button class="fav" onclick="window.location.href='https://youtube.com;">YouTube</button>
+  <button class="fav" onclick="window.location.href='https://bsky.app';">Bluesky</button>
   <button class="fav" onclick="window.location.href='https://old.reddit.com';">Reddit</button>
-  <button class="fav" onclick="window.location.href='https://open.spotify.com/';">Spotify</button>
+  <button class="fav" onclick="window.location.href='https://music.youtube.com/';">YT Music</button>
   <button class="fav" onclick="window.location.href='https://web.whatsapp.com';">WhatsApp</button>
 </div>
 
