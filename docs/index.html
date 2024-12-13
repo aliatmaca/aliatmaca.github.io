@@ -11,8 +11,8 @@
     font-weight: bold;
     font-size: 14px;
     color: white;
-    background: rgb(0,162,255);
-    background: linear-gradient(90deg, rgba(0,162,255,1) 0%, rgba(0,255,238,1) 100%);
+    background: rgb(114,131,148);
+    background: linear-gradient(90deg, rgba(114,131,148,1) 0%, rgba(67,82,101,1) 33%, rgba(74,97,115,1) 66%, rgba(51,68,83,1) 100%);
     margin: 0;
     padding: 0;
   }
@@ -102,15 +102,16 @@
 <body>
 
 <div id="bar">
-  <div id="clock" title="6.0.2449a - 7/12/24"></div>
+  <div id="clock" title="6.0.2450a - 13/12/24"></div>
   <div id="search">
-    <input type="text" id="search-input" placeholder="Ara">
+    <input type="text" id="search-input" placeholder="Web araması">
     <select id="search-engine">
       <option value="https://google.com.tr/search?q=">G</option>
-      <option value="https://duckduckgo.com/?q=">Duck</option>
-      <option value="https://lite.duckduckgo.com/lite/?q=">Duck Lite</option>
-      <option value="https://www.bing.com/search?q=">Bing</option>
-      <option value="https://archive.org/search?query=">Arşiv</option>
+      <option value="https://duckduckgo.com/?q=">D</option>
+      <option value="https://lite.duckduckgo.com/lite/?q=">DL</option>
+      <option value="https://www.bing.com/search?q=">B</option>
+      <option value="https://archive.org/search?query=">A</option>
+      <option value="https://web.archive.org/web/*/">WM</option>
     </select>
     <button class="fav" onclick="search()">></button>
   </div>
