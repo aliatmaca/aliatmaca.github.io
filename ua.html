@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<!-- Sefalar getirdiniz -->
+<meta name="description" content="Tarayıcı kimliğinizi gösteren basit bir sayfa.">
+<meta name="keywords" content="tarayıcı, kimlik, browser, user agent, ua, tarayıcı bilgisi, web tarayıcısı">
+<meta name="author" content="Ali Atmaca">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Simge -->
+<link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAFo9M/3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABLSURBVChTxY7RDgAQCEX7/59GFnNZrTZxntx0KgJKQ57CWYljz4hvMI34uBzCd4AwAhQtoNFtvcVzltpzVebMSOzseaJ+LOTInyGqOQBfoaZXuG8AAAAASUVORK5CYII=" />
+<title>Tarayıcı Hakkında</title>
+<!-- CSS -->
+<style>
+  :root {
+    --color-bg-dark: linear-gradient(90deg, #b3c7e0 0%, #7BADDB 33%, #4B74A5 66%, #375870 100%);
+    --color-bg-light: linear-gradient(90deg, #e3eaf3 0%, #c7d8ef 33%, #b3c7e0 66%, #e3eaf3 100%);
+    --color-text-dark: #fff;
+    --color-text-light: #000;
+    --bar-bg-dark: #313233;
+    --bar-bg-light: #e3eaf3;
+  }
+  body {
+    font-family: 'Inter', 'Segoe UI', 'SF Pro', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: var(--color-text-dark);
+    background: var(--color-bg-dark);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.light {
+    color: var(--color-text-light);
+    background: var(--color-bg-light);
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+  }
+  body.light h1 { color: #000; }
+  .agent {
+    background: var(--bar-bg-dark);
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    color: var(--color-text-dark);
+    font-size: 1rem;
+    word-break: break-word;
+    text-align: center;
+    margin-bottom: 1rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.light .agent {
+    background: var(--bar-bg-light);
+    color: var(--color-text-light);
+  }
+  @media (max-width: 600px) {
+    .agent { padding: 0.7rem 0.5rem; font-size: 0.95rem; }
+    h1 { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+  <h1>Tarayıcınız:</h1>
+  <div class="agent">
+    <p id="user-agent"></p>
+  </div>
+  <script defer>
+    document.getElementById("user-agent").textContent = navigator.userAgent;
+  </script>
+</body>
+</html>

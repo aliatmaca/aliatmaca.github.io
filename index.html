@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<!-- Sefalar getirdiniz -->
+<meta name="description" content="Arama çubuğu ve favorilerin bulubduğu bir sayfa.">
+<meta name="keywords" content="arama, home, favoriler, web, internet, başlangıç">
+<meta name="author" content="Ali Atmaca">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Simge -->
+<link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAFo9M/3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABLSURBVChTxY7RDgAQCEX7/59GFnNZrTZxntx0KgJKQ57CWYljz4hvMI34uBzCd4AwAhQtoNFtvcVzltpzVebMSOzseaJ+LOTInyGqOQBfoaZXuG8AAAAASUVORK5CYII=" />
+<title>Ana Sayfa</title>
+<!-- CSS -->
+<style>
+  /* Renkler */
+  :root {
+    --color-bg-dark: linear-gradient(90deg, #b3c7e0 0%, #7BADDB 33%, #4B74A5 66%, #375870 100%);
+    --color-bg-light: linear-gradient(90deg, #e3eaf3 0%, #c7d8ef 33%, #b3c7e0 66%, #e3eaf3 100%);
+    --color-text-dark: #fff;
+    --color-text-light: #000;
+    --bar-bg-dark: #313233;
+    --bar-bg-light: #e3eaf3;
+    --fav-bg-dark: #313233;
+    --fav-bg-light: #e3eaf3;
+    --fav-hover-dark: #4678b4;
+    --fav-hover-light: #b3c7e0;
+    --input-bg-dark: #313233;
+    --input-bg-light: #e3eaf3;
+    --input-text-dark: #fff;
+    --input-text-light: #000;
+  }
+  /* Gövde */
+  body {
+    font-family: 'Inter', 'Segoe UI', 'SF Pro', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: var(--color-text-dark);
+    background: var(--color-bg-dark);
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.light {
+    color: var(--color-text-light);
+    background: var(--color-bg-light);
+  }
+  /* Üst çubuklar */
+  .top-pills {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1280px;
+    margin: 12px auto 0 auto;
+    gap: 0;
+    padding: 0 8px;
+  }
+  /* Genel çubuk */
+  .pill {
+    background: var(--bar-bg-dark);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+    min-width: 0;
+    transition: background 0.3s;
+    padding: 0 10px;
+    margin: 0;
+    opacity: 0.97;
+  }
+  body.light .pill { background: var(--bar-bg-light); }
+  /* Sol tema */
+  .pill-theme {
+    justify-content: flex-start;
+    width: 36px;
+    min-width: 36px;
+    max-width: 48px;
+    padding: 0 8px;
+  }
+  #theme-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 999px;
+    transition: background 0.11s;
+    width: 32px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #theme-toggle:hover {
+    background: var(--fav-hover-dark);
+  }
+  /* Orta arama */
+  .pill-search {
+    flex: 1 1 0;
+    justify-content: space-evenly;
+    min-width: 0;
+    max-width: 360px;
+    margin: 0 8px;
+    padding: 0 8px;
+  }
+  #search-form {
+    display: flex;
+    align-items: center;
+    border-radius: 999px;
+    background: var(--input-bg-dark);
+    padding: 0 0px 0 8px;
+    min-width: 0;
+    height: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background 0.3s;
+  }
+  body.light #search-form { background: var(--input-bg-light); }
+  #search-input {
+    background: transparent;
+    color: var(--input-text-dark);
+    border: none;
+    outline: none;
+    font-size: 13px;
+    padding: 0 2px 0 0;
+    min-width: 30px;
+    width: 120px;
+    flex: 1 1 0;
+    height: 24px;
+  }
+  body.light #search-input { background: var(--input-bg-light); }
+  #search-engine {
+    background: transparent;
+    color: var(--input-text-dark);
+    border: none;
+    outline: none;
+    font-size: 13px;
+    margin: 0 2px;
+    padding: 0;
+    border-radius: 0;
+    height: 24px;
+  }
+  #search-btn {
+    background: none;
+    border: none;
+    color: var(--input-text-dark);
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0 8px 0 4px;
+    border-radius: 999px;
+    transition: background 0.11s;
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+  #search-btn:hover {
+    background: var(--fav-hover-dark);
+  }
+  /* Sağ saat */
+  .pill-clock {
+    justify-content: flex-end;
+    min-width: 76px;
+    max-width: 160px;
+    padding: 0 8px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+  #clock {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    background: none;
+    border-radius: 999px;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    min-width: 60px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Telefon */
+  @media (max-width: 400px) {
+    .top-pills {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      max-width: 100vw;
+      padding: 0 2vw;
+    }
+    .pill-search { margin: 0; }
+    .pill-theme, .pill-clock { 
+      width: 100%; 
+      max-width: none; 
+      justify-content: center; }
+    #search-form { height: 24px; }
+    #search-input, #search-engine, #search-btn, #clock, #theme-toggle { 
+      font-size: 13px; 
+      height: 24px; }
+  }
+  /* Favoriler */
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 12px;
+    max-width: 900px;
+    margin: 20px auto 10px auto;
+    justify-items: center;
+    align-items: center;
+    transition: grid-template-columns 0.3s;
+  }
+  .fav {
+    background: var(--bar-bg-dark);
+    color: var(--color-text-dark);
+    border: none;
+    border-radius: 160px;
+    padding: 0 28px;
+    min-width: 96px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin: 0;
+  }
+  .fav:hover {
+    background: var(--fav-hover-dark);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  }
+  body.light .fav {
+    background: var(--bar-bg-light);
+    color: var(--color-text-light);
+  }
+  body.light .fav:hover {
+    background: var(--fav-hover-light);
+    color: var(--color-text-dark);
+  }
+  /* Telefon */
+  @media (max-width: 900px) {
+    #grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 10px;
+      max-width: 98vw;
+    }
+    .fav {
+      min-width: 80px;
+      height: 36px;
+      font-size: 13px;
+      padding: 0 18px;
+    }
+  }
+    /* Telemeyen fon */
+  @media (max-width: 700px) {
+    #grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      padding: 8px;
+      max-width: 96vw;
+      justify-items: center;
+    }
+    .fav {
+      min-width: 70px;
+      height: 32px;
+      font-size: 13px;
+      padding: 0 12px;
+    }
+  }
+  /* Tuşlu telefon? */
+  @media (max-width: 400px) {
+    #grid {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 6px;
+    }
+    .fav {
+      min-width: 60px;
+      height: 28px;
+      font-size: 13px;
+      padding: 0 8px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HTML -->
+<!-- Üst çubuklar -->
+<div class="top-pills">
+  <div class="pill pill-theme">
+    <button id="theme-toggle" title="Tema değiştir">🌙</button>
+  </div>
+  <div class="pill pill-search">
+    <form id="search-form" onsubmit="search(); return false;">
+      <input type="text" id="search-input" placeholder="Web'de ara" autocomplete="off">
+      <select id="search-engine">
+        <option value="https://google.com.tr/search?q=">G</option>
+        <option value="https://duckduckgo.com/?q=">D</option>
+        <option value="https://lite.duckduckgo.com/lite/?q=">DL</option>
+        <option value="https://www.bing.com/search?q=">B</option>
+        <option value="https://archive.org/search?query=">A</option>
+        <option value="https://web.archive.org/web/*/">WM</option>
+      </select>
+      <button id="search-btn" type="submit" title="Ara">🔍</button>
+    </form>
+  </div>
+  <div class="pill pill-clock">
+    <div id="clock" title="6.5.2529b - 18/07/25"></div>
+  </div>
+</div>
+
+<!-- Favoriler -->
+<div id="grid">
+  <!-- Goolag -->
+  <button class="fav" onclick="window.location.href='https://google.com.tr';">Google</button>
+  <button class="fav" onclick="window.location.href='https://mail.google.com';">Gmail</button>
+  <button class="fav" onclick="window.location.href='https://drive.google.com';">Drive</button>
+  <button class="fav" onclick="window.location.href='https://photos.google.com';">Fotoğraflar</button>
+  <button class="fav" onclick="window.location.href='https://gemini.google.com';">Gemini</button>
+  <!-- Microslop -->
+  <button class="fav" onclick="window.location.href='https://bing.com';">Bing</button>
+  <button class="fav" onclick="window.location.href='https://outlook.live.com';">Outlook</button>
+  <button class="fav" onclick="window.location.href='https://onedrive.live.com';">OneDrive</button>
+  <button class="fav" onclick="window.location.href='https://onenote.com';">OneNote</button>
+  <button class="fav" onclick="window.location.href='https://copilot.microsoft.com';">Copilot</button>
+  <!-- Vakit katilleri -->
+  <button class="fav" onclick="window.location.href='https://youtube.com';">YouTube</button>
+  <button class="fav" onclick="window.location.href='https://bsky.app';">Bluesky</button>
+  <button class="fav" onclick="window.location.href='https://old.reddit.com';">Reddit</button>
+  <button class="fav" onclick="window.location.href='https://open.spotify.com/';">Spotify</button>
+  <button class="fav" onclick="window.location.href='https://web.whatsapp.com';">WhatsApp</button>
+</div>
+
+<!-- JavaScript -->
+<script>
+// Saat
+function updateClock() {
+  var now = new Date();
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+  var day = now.getDate();
+  var month = now.toLocaleString('default', { month: 'short' });
+  var weekday = now.toLocaleString('default', { weekday: 'short' });
+  document.getElementById('clock').textContent =
+    (hours < 10 ? '0' : '') + hours + ':' +
+    (minutes < 10 ? '0' : '') + minutes + ':' +
+    (seconds < 10 ? '0' : '') + seconds + ' • ' +
+    day + ' ' + month + ' ' + weekday;
+}
+setInterval(updateClock, 1000);
+
+// Arama
+function search() {
+  var query = document.getElementById('search-input').value;
+  var engine = document.getElementById('search-engine').value;
+  if (query.trim() !== "") {
+    window.location.href = engine + encodeURIComponent(query);
+  }
+}
+// Tema
+function setTheme(mode) {
+  if (mode === 'light') {
+    document.body.classList.add('light');
+    document.getElementById('theme-toggle').textContent = '🌙';
+    localStorage.setItem('theme', 'light');
+  } else {
+    document.body.classList.remove('light');
+    document.getElementById('theme-toggle').textContent = '☀️';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+// Sistem teması
+function detectSystemTheme() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+// Tema düğmesi
+const themeBtn = document.getElementById('theme-toggle');
+themeBtn.addEventListener('click', function() {
+  if (document.body.classList.contains('light')) {
+    setTheme('dark');
+  } else {
+    setTheme('light');
+  }
+});
+// F5 ile tema ayarla
+window.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('theme');
+  setTheme(saved ? saved : detectSystemTheme());
+});
+</script>
+<!-- Saygılar -->
+</body>
+</html>
